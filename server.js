@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/view'));
 app.use(bodyParser.json());
 app.use(session({secret:'mmmmmggkkkdkdk',resave:false,saveUninitialized:true}));
 
-mongoose.connect('mongodb://localhost:27017/contactlist');
+mongoose.connect('mongodb://rzaz:rzaz@ds139138.mlab.com:39138/rzazdb');
 
 //on connection
 mongoose.connection.on('connected',()=>{
