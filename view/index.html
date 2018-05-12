@@ -1,0 +1,219 @@
+<!doctype html>
+<html ng-app="contactapp">
+
+	<!-- begin of the head tag-->
+	<head>
+		<title>Contact list app</title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        
+        
+
+	</head>
+	<!-- End of the head tag-->
+
+	<!-- begin of the Body tag-->
+	<body ng-controller="contactController">
+
+
+	    <!-- begin of the navbar -->
+		<nav class="navbar navbar-default">
+
+
+			<div class="container">
+
+
+				<!--begin of navbar header -->
+				<div class="navbar-header" >
+					<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  >
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+
+					<a href="" class="navbar-brand"><i class="glyphicon glyphicon-phone-alt"></i> Sudan PhoneBook</a>
+				</div>
+				<!-- End of the navbar header-->
+
+				<div id="navbar" class="navbar-collapse collapse">
+
+				<!-- begin navbar left-->
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="">Home</a></li>
+                        <li ><a href="" ng-click="showabout()">About Us</a></li>
+					</ul>
+				<!-- begin navbar left-->
+
+				<!-- begin navbar right-->
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href=""><i class="glyphicon glyphicon-user"></i> Login</a></li>
+						<li><a href=""><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+					</ul>
+				<!-- begin navbar left-->
+				</div>
+
+			</div>
+		</nav>
+		<!-- End of the navbar -->
+
+		<!-- start of the body container -->
+<div class="container" ng-controller="contactController">
+
+            <!-- contact list-->
+     <div ng-controller="contactController" ng-style="">
+
+
+                <div ng-style="contactstyle">
+
+                    <h2 style="color:red">  welcome <p ng-model="username" style="color:red">{{username}}</p></h2>
+                    <table class="table table-sm table-dark">
+                            <thead>
+                              <tr>
+                               
+                                <th scope="col">Name</th>
+                                <th scope="col">Number</th>
+                                <th scope="col">Job</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="contact in contactlist">
+                                
+                                <td>{{contact.name}}</td>
+                                <td>{{contact.number}}</td>
+                                <td>{{contact.job}}</td>
+                                <td>{{contact.location}}</td>
+                                
+                                <td>
+                                    <button class="btn btn-danger btn-sm" ng-click="remove(contact._id)">Remove</button>
+                                    <button class="btn btn-warning btn-sm" ng-click="edit(contact._id)">Edit</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+        <!-- contact list end-->
+
+        &nbsp;&nbsp; <button type="submit" ng-style="btnstyle" class="btn btn-primary" ng-click="addnew()">New Contact</button>
+
+
+            <div ng-style="updatestyle">
+            <!-- div update contact
+                 -->
+                    <form>
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="inputEmail4">Full Name</label>
+                                <input type="text" class="form-control" required ng-model="contact.name" id="inputEmail4" placeholder="fullname">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputPassword4">Number</label>
+                                <input type="text" class="form-control" required ng-model="contact.number" id="inputPassword4" placeholder="number">
+                              </div>
+                            </div>
+
+                            <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="inputEmail4">Job</label>
+                                      <input type="text" class="form-control" required ng-model="contact.job" id="inputEmail4" placeholder="job">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="inputPassword4">Location</label>
+                                      <input type="text" class="form-control" required ng-model="contact.location" id="inputPassword4" placeholder="location">
+                                    </div>
+                                  </div>
+                                  &nbsp;&nbsp; <button type="submit" class="btn btn-primary" ng-click="update()">Save</button>
+                          </form>
+            </div>    
+        <!-- end of div add contact -->
+
+
+
+        <div ng-style="addstyle">
+                <!-- div update contact
+                     -->
+                        <form>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Full Name</label>
+                                    <input type="text" class="form-control" required ng-model="contact.name" id="inputEmail4" placeholder="fullname">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Number</label>
+                                    <input type="text" class="form-control" required ng-model="contact.number" id="inputPassword4" placeholder="number">
+                                  </div>
+                                </div>
+    
+                                <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="inputEmail4">Job</label>
+                                          <input type="text" class="form-control" required ng-model="contact.job" id="inputEmail4" placeholder="job">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="inputPassword4">Location</label>
+                                          <input type="text" class="form-control" required ng-model="contact.location" id="inputPassword4" placeholder="location">
+                                        </div>
+                                      </div>
+                                      &nbsp;&nbsp; <button type="submit" class="btn btn-primary" ng-click="addContact()">Save</button>
+                              </form>
+                </div>    
+            <!-- end of div add contact -->
+
+
+          
+            
+
+
+<!-- div update contact-->
+            <div ng-style="loginstyle">    
+                     <form>
+                            <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <label for="inputEmail4">User Name</label>
+                                <input type="text" class="form-control" required ng-model="username" id="inputEmail4" placeholder="fullname">
+                              </div>
+                              <div class="form-group col-md-12">
+                                <label for="inputPassword4">Password</label>
+                                <input type="password" class="form-control" required ng-model="user.password" id="inputPassword4" placeholder="number">
+                              </div>
+                            </div>
+                                  &nbsp;&nbsp; <button type="submit" class="btn btn-primary" ng-click="login()">Save</button>
+                    </form>
+            </div>    
+        <!-- end of div login -->
+
+
+
+            
+
+    </div>
+
+
+  
+
+    <div ng-style="aboutstyle" id="about">
+            <h2 class="text-center">About Us</h2>
+            <p>
+               Whitepages is a provider of online directory services, fraud screening and
+               identity verification for businesses, public record background checks, and
+               other products, based on its database of contact information for people and businesses. It has the largest database available of contact information on US residents.
+            </p>
+        </div>
+
+
+
+		</div>
+		<!-- End of the The body container -->
+        
+
+        <script src="css/angular.min.js"></script>
+        <script src="controllers/controller.js"></script>
+        <script src="css/jquery.min.js"></script>
+        <script src="css/bootstrap.min.js"></script>
+        
+
+	</body>
+	<!-- End of the body tag-->
+</html>
